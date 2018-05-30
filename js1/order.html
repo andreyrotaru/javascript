@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script>
+
+const MENU =   " FOOD & DRINK \n" + 
+               "1. PIzza  - 65lei\n" +
+               "2. Salad  - 75lei\n" +
+               "3. Zeama  - 45lei\n" +
+               "4. Cola   - 30lei\n" +
+               "5. Wine   - 300lei" ;
+var salad = "Salad  -  75lei";
+var order1 = prompt(MENU);
+if( order1 == 2){
+    alert("You have chose\n\n" + " " + salad);
+
+} else{
+
+ var pizza = "Pizza   -  0 pax";
+ var zeama = "Zeama   -  1 pax";
+ 
+
+if(  order1 == 1){
+    alert("Is not availabel!\n\n" + pizza );
+}else{
+    
+    
+    if(  order1 == 3){
+    alert("Is availabel!\n\n" + zeama );
+}else{
+
+    var wine = 300;
+       
+  if(  order1 == 5){
+    var quant = prompt("How many bottles of wine ?");
+   alert("Your order cost ("+ quant * wine +"Lei)");
+
+   alert("Over 300 Lei free shipping!");
+   
+}else{
+        alert("Thenk you, come again!!!");
+    
+
+} 
+}
+}
+
+
+
+    //1) if+else
+    // * " You have chose "Pizza" "
+    
+    //2) var quantity
+    //3) * prompt -> quantity -> total 
+    //  *  suma > 500 > free delivery
+}
+
+
+</script>
+
+
+
+</body>
+</html>
