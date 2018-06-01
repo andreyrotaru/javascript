@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body style="text-align: center;">
+    <script>
+    
+    var n =1;
+    var w = 200;
+    var h = 150;
+    while(n<=16){
+        if(n%16 == 0 ){
+        document.write(  '<img src="http://picsum.photos/'+(w*5)+'/'+(h*2)+'?id='+n+'" >');
+   }else{
+         document.write(  '<img src="http://picsum.photos/'+w+'/'+h+'?id='+n+'" >');
+   }   
+         if(n%5 ==0 ){
+    document.write("<br>")
+    }
+    n++;
+    }
+    </script>
+</body>
+</html>
