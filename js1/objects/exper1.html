@@ -1,0 +1,31 @@
+<script>
+    // <div id="my-cube"> menu...</div>
+
+    var div = {
+        id: "main-cube",
+        style: {
+            border: "2px solid black",
+            margin: "200px",
+            width: "200px",
+            height: "200px",
+            background: "yellow",
+            color: "green",
+            align: "center"
+        },
+        content: {
+            href: "/about.html",
+            text: "inside"
+        },
+        //method
+
+        render: function(){
+            document.write(` <div id="${this.id}" style="border:${this.style.border}; margin:${this.style.margin}; 
+            width:${this.style.width}; height:${this.style.height}; background:${this.style.background};"> 
+            <a href="${this.content.href}" style="color:${this.style.color};"> ${this.content.text} </a>
+             </div> `);
+
+        }
+    };
+
+    div.render();
+</script>

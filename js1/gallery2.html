@@ -1,0 +1,18 @@
+<script>
+    var n = 1;
+    var nImg = prompt("Please enter the number of images you want:");
+    var w = prompt("Now please enter the width you want:");
+    var h = prompt("Now please enter the height you want:");
+    var row = prompt("Great! Now please enter how many pictures you want to be in a row:");
+    while ( n <= nImg ) {
+    if( n % nImg == 0 ){
+    document.write( '<img src="https://picsum.photos/'+ w +'/'+ h +'?id='+ n +'" alt="" />' );
+    }else{
+    document.write( '<img src="https://picsum.photos/'+ w +'/'+ h +'?id='+ n +'" alt="" />' );
+    }
+    if( n % row == 0 ){
+    document.write("<br>")
+    }
+    n++;
+    }
+    </script>

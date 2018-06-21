@@ -1,0 +1,31 @@
+<script>
+  // nav -> object ...<nav id="my-nav"> menu...</nav>
+
+  var nav = {
+      id: "main-navigation",
+      style: {
+          color: "red",
+          border: "1px solid black",
+          margin: "0px",
+          padding: "10px",
+          background: "#FF9D00"
+      },
+    content:{
+        href: "/about.html",
+        text: "About Us"
+    },
+    // method
+    render: function(){
+        document.write(`<nav id=" ${this.id} " style="border:${this.style.border}; margin:${this.style.margin};
+         padding:${this.style.padding}; background:${this.style.background};"> 
+        <a href="${this.content.href} " style="color:${this.style.color};"> ${this.content.text} </a> 
+        </nav>`);
+    }
+  
+  };
+
+  nav.render();
+
+
+
+</script>

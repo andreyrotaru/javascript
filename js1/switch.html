@@ -1,0 +1,63 @@
+<script>
+  
+  var calendar = prompt("What calendar do you need: 1.EU or 2.US?")
+  var day = +prompt("Witch day is it?");  
+if(calendar == 1 || calendar == 2){
+switch(day){
+    case 1:
+    if(calendar==1){
+     alert("Mo.");
+     }else{
+       alert("Su.");
+     }
+      break;
+    case 2:
+    if(calendar==1){
+     alert("Tu.");
+    }else{
+      alert("Mo.");
+    }
+     break;
+    case 3:
+    if(calendar==1){
+     alert("Wd.");
+    }else{
+      alert("Tu.");
+    }
+     break;
+    case 4:
+    if(calendar==1){
+     alert("Th.");
+    }else{
+      alert("Wd.");
+    }
+     break;
+    case 5:
+    if(calendar==1){
+     alert("Fr.");
+    }else{
+      alert("Th.");
+    }
+     break;
+    case 6:
+    if(calendar==1){
+     alert("Sa.");
+    }else{
+      alert("Fr."); 
+    }
+     ;break;
+    case 7: 
+    if(calendar==1){
+    alert("Su.");
+    }else{
+     alert("Sa.");
+    }
+    break;
+
+default: alert("WHAAT?");break;
+}
+}
+
+
+
+</script>

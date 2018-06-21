@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #909971;
+            text-align: center;
+        }
+    h3{
+        color:red;
+    }
+    </style>
+</head>
+<body>
+    <script>
+        
+        
+        class Product{
+            constructor(avatar1, avatar2, avatar3, name, price, year, manufacturer){
+                this.avatar1 = avatar1;
+                this.avatar2 = avatar2;
+                this.avatar3 = avatar3;
+                this.name = name;
+                if (price == undefined){
+                    this.price= "Price - 113 &#8383;";
+                }else{
+                    this.price = price;
+                }
+                if (year == undefined) {
+                    this.year= "year of issue - 2545";
+                } else {
+                    this.year = year;
+                }
+                if (manufacturer == undefined) {
+                    this.manufacturer=  'Made in NEW-MOLDOVA. <br> "COSMO-TRACTOR PLUS SRL."<br> ChiJINau city, <br> Zvodscaia street 874/XXX.';
+                } else {
+                    this.manufacturer = manufacturer; 
+                }
+                
+            }
+            render(mode){
+                if(mode== "teaser"){
+                    document.write(` <img src="${this.avatar2}"> `);
+                    document.write(` <h2> ${this.name} </h2> `);
+                    document.write(` <h3> ${this.price} </h3> `);
+                }else if(mode == "full"){
+                document.write(` <img src="${this.avatar1}"><br>
+                                 <img src="${this.avatar2}">
+                                 <img src="${this.avatar3}"> `);
+                document.write(` <h2> ${this.name} </h2> `);
+                document.write(` <h3> ${this.price} </h3> `);
+                document.write(` <p> ${this.year} </p> `);
+                document.write(` <p> ${this.manufacturer} </p> `);
+                }
+            }
+            
+        }
+        
+        var product1 = new Product("http://picsum.photos/400/300?id=1", "http://picsum.photos/200/200?id=62", "http://picsum.photos/200/200?id=91", "MacBurunduk" );
+            product1.render("full");
+    </script>
+</body>
+</html>
+

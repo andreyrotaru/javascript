@@ -1,0 +1,31 @@
+<script>
+    //Daclare a class
+class User{
+    // structure
+    constructor(mail, login, avatar, password){
+        this.mail= mail;
+        this.login= login;
+        this.avatar= avatar;
+        if(password == undefined){
+            this.password= "12345"; 
+        }else{
+            this.password= password; 
+        }
+    }
+    render(){
+        document.write(`<h2> ${this.mail} </h2>`);
+        document.write(`<h2> ${this.login} </h2>`);
+        document.write(`<img src="${this.avatar}"><br><br><br><br><br><br>`);
+    }
+}
+
+
+// using the CLASS
+var user1= new User("gicuboi@mail.ru", "iurik77", "http://picsum.photos/200/200?id=1", "54321");
+var user2= new User("andr123@mail.ru", "murik88", "http://picsum.photos/200/200?id=15" );
+//console.log(user1);
+//console.log(user2);
+
+user1.render();
+user2.render();
+</script>

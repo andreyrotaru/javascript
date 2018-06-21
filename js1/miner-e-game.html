@@ -1,0 +1,44 @@
+<style>
+        body{font-family: monospace;}
+    </style>
+    <script>
+    var r = prompt("row?");
+    var c = prompt("col?");
+    
+    ///////START///////
+    var row=1;
+    while(row<=11){
+    
+    ////////START///////
+    
+        var col=1;
+        while( col<=10){
+       
+       if(row==r && col==c){
+            document.write("&#127794;");
+        }else{
+            if((row==1) || (row==10) || (col==1) || (col==10)){
+            document.write("# ");
+        }else{
+            if(row==11){
+            document.write( col+ " ");
+        }else{
+            document.write(". ");  
+        }
+        }
+        }
+           col++;
+        }
+        
+    /////////FINISH//////
+
+    document.write( row + "<br>");
+        row++;
+        
+    }
+    if(r>=10 || c>=10 && r<=1 || c<=1){
+        alert('"Дальше нет дороги!!!"');
+        }
+    
+    ////////FINISH//////
+    </script>

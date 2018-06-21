@@ -1,0 +1,1316 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"> -->
+    <title>Meniu interactiv</title>
+</head>
+
+<body>
+    <script>
+        const TOGGLE_PROMO = true;
+        const NR_INCERCARI = 3;
+        const REGION_1 = "Stauceni";
+        const REGION_2 = "Riscani";
+        const REGION_3 = "Ciocana";
+        const REGION_4 = "Centru";
+        const REGION_5 = "Buiucani";
+        const REGION_6 = "Botanica";
+
+        // Navigation
+        const GOTO_BACK = "x";
+        const GOTO_EXIT = "q";
+
+        var n = 0;
+        var delivery_for_region = "";
+        var delivery_region = "";
+        var delivery_price = 0;
+        var delivery_time = 0;
+        var delivery_time_default = 20;
+        var time_up = 0;
+        var promo_item = 0;
+        var main_menu = "";
+        var menu_item = "";
+        var sub_menu = "";
+        var promo_item_description = "";
+        var triger_promo = 200;
+        var triger_free_delivery = 300;
+        var sum_order = 0;
+        var sum_prods = 0;
+        var q_1_1 = q_1_2 = q_1_3 = q_1_4 = q_1_5 = q_1_6 = q_1_7 = q_1_8 = 0;
+        var q_2_1 = q_2_2 = q_2_3 = q_2_4 = q_2_5 = q_2_6 = q_2_7 = q_2_8 = 0;
+        var q_3_1 = q_3_2 = q_3_3 = q_3_4 = q_3_5 = q_3_6 = q_3_7 = q_3_8 = 0;
+        var q_4_1 = q_4_2 = q_4_3 = q_4_4 = q_4_5 = q_4_6 = q_4_7 = q_4_8 = 0;
+        var q_5_1 = q_5_2 = q_5_3 = q_5_4 = q_5_5 = q_5_6 = q_5_7 = q_5_8 = 0;
+        var sum_1_1 = sum_1_2 = sum_1_3 = sum_1_4 = sum_1_5 = sum_1_6 = sum_1_7 = sum_1_8 = 0;
+        var sum_2_1 = sum_2_2 = sum_2_3 = sum_2_4 = sum_2_5 = sum_2_6 = sum_2_7 = sum_2_8 = 0;
+        var sum_3_1 = sum_3_2 = sum_3_3 = sum_3_4 = sum_3_5 = sum_3_6 = sum_3_7 = sum_3_8 = 0;
+        var sum_4_1 = sum_4_2 = sum_4_3 = sum_4_4 = sum_4_5 = sum_4_6 = sum_4_7 = sum_4_8 = 0;
+        var sum_5_1 = sum_5_2 = sum_5_3 = sum_5_4 = sum_5_5 = sum_5_6 = sum_5_7 = sum_5_8 = 0;
+        var submenu_1_items = submenu_2_items = submenu_3_items = submenu_4_items = submenu_5_items = "";
+        var sum_category_1 = sum_category_2 = sum_category_3 = sum_category_4 = sum_category_5 = 0;
+
+        // Category 1
+        var submenu_1_category = "Burger";
+        var item_1_1 = "Epic Beef";
+        var price_1_1 = 80;
+        var prod_1_1 = 5;
+        var item_1_2 = "Glorious Chicken";
+        var price_1_2 = 80;
+        var prod_1_2 = 25;
+        var item_1_3 = "Big Tasty";
+        var price_1_3 = 65;
+        var prod_1_3 = 17;
+        var item_1_4 = "Big Tasty Chicken";
+        var price_1_4 = 63;
+        var prod_1_4 = 23;
+        var item_1_5 = "Royal Mac";
+        var price_1_5 = 43;
+        var prod_1_5 = 16;
+        var item_1_6 = "Royal Deluxe";
+        var price_1_6 = 53;
+        var prod_1_6 = 4;
+        var item_1_7 = "Royal Cheese";
+        var price_1_7 = 45;
+        var prod_1_7 = 14;
+        var item_1_8 = "McChicken";
+        var price_1_8 = 43;
+        var prod_1_8 = 19;
+
+        // Category 2
+        var submenu_2_category = "Sushi";
+        var item_2_1 = "Philadelphia Classic";
+        var price_2_1 = 98;
+        var prod_2_1 = 14;
+        var item_2_2 = "Philadelphia Deluxe";
+        var price_2_2 = 159;
+        var prod_2_2 = 12;
+        var item_2_3 = "Canada Roll";
+        var price_2_3 = 165;
+        var prod_2_3 = 17;
+        var item_2_4 = "California in Susan";
+        var price_2_4 = 110;
+        var prod_2_4 = 23;
+        var item_2_5 = "California in Tobiko";
+        var price_2_5 = 145;
+        var prod_2_5 = 16;
+        var item_2_6 = "Hokkaido";
+        var price_2_6 = 145;
+        var prod_2_6 = 4;
+        var item_2_7 = "Imperator";
+        var price_2_7 = 159;
+        var prod_2_7 = 14;
+        var item_2_8 = "Red Drakon";
+        var price_2_8 = 165;
+        var prod_2_8 = 19;
+
+        // Category 3
+        var submenu_3_category = "Pizza";
+    
+        var item_3_1 = "Calzone cu fileu de pui";
+        var price_3_1 = 98;
+        var prod_3_1 = 11;
+        var item_3_2 = "Pizza Vegetariana";
+        var price_3_2 = 83;
+        var prod_3_2 = 12;
+        var item_3_3 = "Pizza Margherita";
+        var price_3_3 = 64;
+        var prod_3_3 = 17;
+        var item_3_4 = "Pizza Di carne";
+        var price_3_4 = 109;
+        var prod_3_4 = 23;
+        var item_3_5 = "Pizza Al Pollo";
+        var price_3_5 = 88;
+        var prod_3_5 = 16;
+        var item_3_6 = "Pizza Pepperoni";
+        var price_3_6 = 87;
+        var prod_3_6 = 14;
+        var item_3_7 = "Pizza Italiana";
+        var price_3_7 = 159;
+        var prod_3_7 = 14;
+        var item_3_8 = "Pizza Quatro formaggi";
+        var price_3_8 = 117;
+        var prod_3_8 = 19;
+
+        // Category 4
+        var submenu_4_category = "Kebab";
+        var item_4_1 = "Star Kebab pui";
+        var price_4_1 = 41;
+        var prod_4_1 = 24;
+        var item_4_2 = "Star Kebab falafel";
+        var price_4_2 = 41;
+        var prod_4_2 = 12;
+        var item_4_3 = "Star Kebab mixt";
+        var price_4_3 = 41;
+        var prod_4_3 = 17;
+        var item_4_4 = "Star Kebab ciuperci";
+        var price_4_4 = 41;
+        var prod_4_4 = 23;
+        var item_4_5 = "Pocket pui";
+        var price_4_5 = 39;
+        var prod_4_5 = 16;
+        var item_4_6 = "Pocket falafel";
+        var price_4_6 = 39;
+        var prod_4_6 = 14;
+        var item_4_7 = "Pocket mixt";
+        var price_4_7 = 39;
+        var prod_4_7 = 14;
+        var item_4_8 = "Pocket cu ciuperci";
+        var price_4_8 = 39;
+        var prod_4_8 = 19;
+
+        // Category 5
+        var submenu_5_category = "Clatite";
+        var item_5_1 = "Clatite cu carne de vita";
+        var price_5_1 = 40;
+        var prod_5_1 = 11;
+        var item_5_2 = "Clatite cu carne de pui";
+        var price_5_2 = 83;
+        var prod_5_2 = 12;
+        var item_5_3 = "Clatite cu ficat de pui";
+        var price_5_3 = 64;
+        var prod_5_3 = 17;
+        var item_5_4 = "Clatite cu branza de vaci";
+        var price_5_4 = 109;
+        var prod_5_4 = 23;
+        var item_5_5 = "Clatite cu ciuperci";
+        var price_5_5 = 88;
+        var prod_5_5 = 16;
+        var item_5_6 = "Clatite cu branza";
+        var price_5_6 = 87;
+        var prod_5_6 = 14;
+        var item_5_7 = "Clatite cu carne de pui si vita";
+        var price_5_7 = 159;
+        var prod_5_7 = 14;
+        var item_5_8 = "Clatite cu ficat de gisca";
+        var price_5_8 = 117;
+        var prod_5_8 = 19;
+
+        var main_menu = (   (submenu_1_category != "" ? "1. " + submenu_1_category + " \n" : "") + 
+                            (submenu_2_category != "" ? "2. " + submenu_2_category + " \n" : "") + 
+                            (submenu_3_category != "" ? "3. " + submenu_3_category + " \n" : "") + 
+                            (submenu_4_category != "" ? "4. " + submenu_4_category + " \n" : "") + 
+                            (submenu_5_category != "" ? "5. " + submenu_5_category + " \n" : "") );
+
+        alert("Bine ai venit la Delisimo Delivery.")
+
+        // Regiunea livrarii
+        var delivery_menu = (    (REGION_1 != "" ? "1. " + REGION_1 + " \n" : "") + 
+                                    (REGION_2 != "" ? "2. " + REGION_2 + " \n" : "") + 
+                                    (REGION_3 != "" ? "3. " + REGION_3 + " \n" : "") + 
+                                    (REGION_4 != "" ? "4. " + REGION_4 + " \n" : "") + 
+                                    (REGION_5 != "" ? "5. " + REGION_5 + " \n" : "") );
+        delivery_for_region = +prompt("Introdu numarul regiunii pentru livrare: \n" + delivery_menu)
+        
+        if (delivery_for_region <= 0 || delivery_for_region > 6 ) {
+            for (n = 0; n < NR_INCERCARI; n++) {
+                delivery_for_region = +prompt("Ai introdus un numar gresit! \nIntrodu numarul indicat mai jos pentru regiunea aleasa: \n" + delivery_menu + "\n" + (n == NR_INCERCARI - 1 ? "Ti-a ramas ultima incercare pentru a alege regiunea dorita." : ("Mai ai " + (NR_INCERCARI - +n) + " incercari ramase.")) );
+            }
+        }
+
+        if (n < NR_INCERCARI) {
+            switch (delivery_for_region) {
+            case 1:
+                delivery_region = REGION_1;
+                delivery_price = 10;
+                time_up = 0;
+                promo_item = 1;
+                break;
+            case 2:
+                delivery_region = REGION_2;
+                delivery_price = 30;
+                time_up = 15;
+                promo_item = 1;
+                break;
+            case 3:
+                delivery_region = REGION_3;
+                delivery_price = 35;
+                time_up = 15;
+                promo_item = 2;
+                break;
+            case 4:
+                delivery_region = REGION_4;
+                delivery_price = 40;
+                time_up = 20;
+                promo_item = 2;
+                break;
+            case 5:
+                delivery_region = REGION_5;
+                delivery_price = 40;
+                time_up = 30;
+                promo_item = 1;
+                break;
+            case 6:
+                delivery_region = REGION_6;
+                delivery_price = 40;
+                time_up = 35;
+                promo_item = 3;
+                break;
+            default:
+                delivery_region = "Suburbia Chisinaului";
+                delivery_price = 60;
+                time_up = 60;
+                promo_item = 3;
+                break;
+            }
+            
+            // Promo items
+            switch (promo_item) {
+                case 1:
+                    promo_item_description = "O ceasca de Cappuccino.";
+                    triger_promo = 100;
+                    break;
+                case 2:
+                    promo_item_description = "O sticla de Coca-Cola de 0,5 litri.";
+                    triger_promo = 150;
+                    break;
+                case 3:
+                    promo_item_description = "O pizza junior din partea localului.";
+                    triger_promo = 200;
+                    break;
+                default:
+                    promo_item_description = "";
+                    break;
+            }
+
+            if (TOGGLE_PROMO && promo_item != 0 && promo_item_description != "") {
+                alert("La comanda mai mare de " + triger_promo + "lei primesti gratis adaugator la comanda: \n" +
+                    promo_item_description)
+            }
+            
+            for (;main_menu != GOTO_EXIT;) {
+            menu_item = prompt("MENIUL PRINCIPAL \nCe doresti sa alegi? \n" + main_menu + "\n########## NAVIGARE ########## \n" + GOTO_EXIT + " - Iesire");
+            sub_menu = "";
+
+            if (menu_item == GOTO_EXIT) break;
+
+                switch (menu_item) {
+                    case "1":
+                        for (;sub_menu != GOTO_BACK;) {
+
+                            submenu_1_items = ( "1. " + item_1_1 + " - " + price_1_1 + " lei " + "(" + prod_1_1 + " disponibil)" + " \n" + 
+                            "2. " + item_1_2 + " - " + price_1_2 + " lei " + "(" + prod_1_2 + " disponibil)" + " \n" +
+                            "3. " + item_1_3 + " - " + price_1_3 + " lei " + "(" + prod_1_3 + " disponibil)" + " \n" +
+                            "4. " + item_1_4 + " - " + price_1_4 + " lei " + "(" + prod_1_4 + " disponibil)" + " \n" +
+                            "5. " + item_1_5 + " - " + price_1_5 + " lei " + "(" + prod_1_5 + " disponibil)" + " \n" +
+                            "6. " + item_1_6 + " - " + price_1_6 + " lei " + "(" + prod_1_6 + " disponibil)" + " \n" +
+                            "7. " + item_1_7 + " - " + price_1_7 + " lei " + "(" + prod_1_7 + " disponibil)" + " \n" +
+                            "8. " + item_1_8 + " - " + price_1_8 + " lei " + "(" + prod_1_8 + " disponibil)" + " \n" );
+
+                            sub_menu = prompt("Meniul " + submenu_1_category + "\n" + submenu_1_items + "\n########## NAVIGARE ########## \n" + GOTO_BACK + " - Inapoi");
+                            if (sub_menu == GOTO_EXIT) break;
+                            switch (sub_menu) {
+                                case "1":
+                                    if (prod_1_1 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_1_category + " " + item_1_1 + " nu mai este disponibil.")
+                                    } else {
+                                        q_1_1 = prompt("Cate portii de " + submenu_1_category + " " + item_1_1 + " doresti?" + " (" + prod_1_1 + " disponibile)");
+                                        if (q_1_1 > 0 ) {
+                                            if ( q_1_1 > prod_1_1 && confirm("Sunt disponibile doar " + prod_1_1 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_1_1 = prod_1_1;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_1_1 + " " + ( q_1_1 == 1 ? "portie" : "portii") + " de " + submenu_1_category + " " + item_1_1 + " - " + price_1_1 * q_1_1 + " lei." ) ) {
+                                                sum_1_1 = price_1_1 * q_1_1;
+                                                prod_1_1 = prod_1_1 - q_1_1;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "2":
+                                    if (prod_1_2 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_1_category + " " + item_1_2 + " nu mai este disponibil.")
+                                    } else {
+                                        q_1_2 = prompt("Cate portii de " + submenu_1_category + " " + item_1_2 + " doresti?" + " (" + prod_1_2 + " disponibile)");
+                                        if (q_1_2 > 0 ) {
+                                            if ( q_1_2 > prod_1_2 && confirm("Sunt disponibile doar " + prod_1_2 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_1_2 = prod_1_2;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_1_2 + " " + ( q_1_2 == 1 ? "portie" : "portii") + " de " + submenu_1_category + " " + item_1_2 + " - " + price_1_2 * q_1_2 + " lei." ) ) {
+                                                sum_1_2 = price_1_2 * q_1_2;
+                                                prod_1_2 = prod_1_2 - q_1_2;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "3":
+                                    if (prod_1_3 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_1_category + " " + item_1_3 + " nu mai este disponibil.")
+                                    } else {
+                                        q_1_3 = prompt("Cate portii de " + submenu_1_category + " " + item_1_3 + " doresti?" + " (" + prod_1_3 + " disponibile)");
+                                        if (q_1_3 > 0 ) {
+                                            if ( q_1_3 > prod_1_3 && confirm("Sunt disponibile doar " + prod_1_3 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_1_3 = prod_1_3;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_1_3 + " " + ( q_1_3 == 1 ? "portie" : "portii") + " de " + submenu_1_category + " " + item_1_3 + " - " + price_1_3 * q_1_3 + " lei." ) ) {
+                                                sum_1_3 = price_1_3 * q_1_3;
+                                                prod_1_3 = prod_1_3 - q_1_3;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "4":
+                                    if (prod_1_4 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_1_category + " " + item_1_4 + " nu mai este disponibil.")
+                                    } else {
+                                        q_1_4 = prompt("Cate portii de " + submenu_1_category + " " + item_1_4 + " doresti?" + " (" + prod_1_4 + " disponibile)");
+                                        if (q_1_4 > 0 ) {
+                                            if ( q_1_4 > prod_1_4 && confirm("Sunt disponibile doar " + prod_1_4 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_1_4 = prod_1_4;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_1_4 + " " + ( q_1_4 == 1 ? "portie" : "portii") + " de " + submenu_1_category + " " + item_1_4 + " - " + price_1_4 * q_1_4 + " lei." ) ) {
+                                                sum_1_4 = price_1_4 * q_1_4;
+                                                prod_1_4 = prod_1_4 - q_1_4;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "5":
+                                    if (prod_1_5 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_1_category + " " + item_1_5 + " nu mai este disponibil.")
+                                    } else {
+                                        q_1_5 = prompt("Cate portii de " + submenu_1_category + " " + item_1_5 + " doresti?" + " (" + prod_1_5 + " disponibile)");
+                                        if (q_1_5 > 0 ) {
+                                            if ( q_1_5 > prod_1_5 && confirm("Sunt disponibile doar " + prod_1_5 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_1_5 = prod_1_5;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_1_5 + " " + ( q_1_5 == 1 ? "portie" : "portii") + " de " + submenu_1_category + " " + item_1_5 + " - " + price_1_5 * q_1_5 + " lei." ) ) {
+                                                sum_1_5 = price_1_5 * q_1_5;
+                                                prod_1_5 = prod_1_5 - q_1_5;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "6":
+                                    if (prod_1_6 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_1_category + " " + item_1_6 + " nu mai este disponibil.")
+                                    } else {
+                                        q_1_6 = prompt("Cate portii de " + submenu_1_category + " " + item_1_6 + " doresti?" + " (" + prod_1_6 + " disponibile)");
+                                        if (q_1_6 > 0 ) {
+                                            if ( q_1_6 > prod_1_6 && confirm("Sunt disponibile doar " + prod_1_6 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_1_6 = prod_1_6;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_1_6 + " " + ( q_1_6 == 1 ? "portie" : "portii") + " de " + submenu_1_category + " " + item_1_6 + " - " + price_1_6 * q_1_6 + " lei." ) ) {
+                                                sum_1_6 = price_1_6 * q_1_6;
+                                                prod_1_6 = prod_1_6 - q_1_6;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "7":
+                                    if (prod_1_7 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_1_category + " " + item_1_7 + " nu mai este disponibil.")
+                                    } else {
+                                        q_1_7 = prompt("Cate portii de " + submenu_1_category + " " + item_1_7 + " doresti?" + " (" + prod_1_7 + " disponibile)");
+                                        if (q_1_7 > 0 ) {
+                                            if ( q_1_7 > prod_1_7 && confirm("Sunt disponibile doar " + prod_1_7 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_1_7 = prod_1_7;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_1_7 + " " + ( q_1_7 == 1 ? "portie" : "portii") + " de " + submenu_1_category + " " + item_1_7 + " - " + price_1_7 * q_1_7 + " lei." ) ) {
+                                                sum_1_7 = price_1_7 * q_1_7;
+                                                prod_1_7 = prod_1_7 - q_1_7;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "8":
+                                    if (prod_1_8 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_1_category + " " + item_1_8 + " nu mai este disponibil.")
+                                    } else {
+                                        q_1_8 = prompt("Cate portii de " + submenu_1_category + " " + item_1_8 + " doresti?" + " (" + prod_1_8 + " disponibile)");
+                                        if (q_1_8 > 0 ) {
+                                            if ( q_1_8 > prod_1_8 && confirm("Sunt disponibile doar " + prod_1_8 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_1_8 = prod_1_8;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_1_8 + " " + ( q_1_8 == 1 ? "portie" : "portii") + " de " + submenu_1_category + " " + item_1_8 + " - " + price_1_8 * q_1_8 + " lei." ) ) {
+                                                sum_1_8 = price_1_8 * q_1_8;
+                                                prod_1_8 = prod_1_8 - q_1_8;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case "2":
+                        for (;sub_menu != GOTO_BACK;) {
+
+                            submenu_2_items = ( "1. " + item_2_1 + " - " + price_2_1 + " lei " + "(" + prod_2_1 + " disponibil)" + " \n" + 
+                            "2. " + item_2_2 + " - " + price_2_2 + " lei " + "(" + prod_2_2 + " disponibil)" + " \n" +
+                            "3. " + item_2_3 + " - " + price_2_3 + " lei " + "(" + prod_2_3 + " disponibil)" + " \n" +
+                            "4. " + item_2_4 + " - " + price_2_4 + " lei " + "(" + prod_2_4 + " disponibil)" + " \n" +
+                            "5. " + item_2_5 + " - " + price_2_5 + " lei " + "(" + prod_2_5 + " disponibil)" + " \n" +
+                            "6. " + item_2_6 + " - " + price_2_6 + " lei " + "(" + prod_2_6 + " disponibil)" + " \n" +
+                            "7. " + item_2_7 + " - " + price_2_7 + " lei " + "(" + prod_2_7 + " disponibil)" + " \n" +
+                            "8. " + item_2_8 + " - " + price_2_8 + " lei " + "(" + prod_2_8 + " disponibil)" + " \n" );
+
+                            sub_menu = prompt("Meniul " + submenu_2_category + "\n" + submenu_2_items + "\n########## NAVIGARE ########## \n" + GOTO_BACK + " - Inapoi");
+                            if (sub_menu == GOTO_EXIT) break;
+                            switch (sub_menu) {
+                                case "1":
+                                    if (prod_2_1 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_1 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_1 = prompt("Cate portii de " + submenu_2_category + " " + item_2_1 + " doresti?" + " (" + prod_2_1 + " disponibile)");
+                                        if (q_2_1 > 0 ) {
+                                            if ( q_2_1 > prod_2_1 && confirm("Sunt disponibile doar " + prod_2_1 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_1 = prod_2_1;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_1 + " " + ( q_2_1 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_1 + " - " + price_2_1 * q_2_1 + " lei." ) ) {
+                                                sum_2_1 = price_2_1 * q_2_1;
+                                                prod_2_1 = prod_2_1 - q_2_1;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "2":
+                                    if (prod_2_2 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_2 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_2 = prompt("Cate portii de " + submenu_2_category + " " + item_2_2 + " doresti?" + " (" + prod_2_2 + " disponibile)");
+                                        if (q_2_2 > 0 ) {
+                                            if ( q_2_2 > prod_2_2 && confirm("Sunt disponibile doar " + prod_2_2 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_2 = prod_2_2;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_2 + " " + ( q_2_2 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_2 + " - " + price_2_2 * q_2_2 + " lei." ) ) {
+                                                sum_2_2 = price_2_2 * q_2_2;
+                                                prod_2_2 = prod_2_2 - q_2_2;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "3":
+                                    if (prod_2_3 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_3 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_3 = prompt("Cate portii de " + submenu_2_category + " " + item_2_3 + " doresti?" + " (" + prod_2_3 + " disponibile)");
+                                        if (q_2_3 > 0 ) {
+                                            if ( q_2_3 > prod_2_3 && confirm("Sunt disponibile doar " + prod_2_3 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_3 = prod_2_3;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_3 + " " + ( q_2_3 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_3 + " - " + price_2_3 * q_2_3 + " lei." ) ) {
+                                                sum_2_3 = price_2_3 * q_2_3;
+                                                prod_2_3 = prod_2_3 - q_2_3;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "4":
+                                    if (prod_2_4 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_4 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_4 = prompt("Cate portii de " + submenu_2_category + " " + item_2_4 + " doresti?" + " (" + prod_2_4 + " disponibile)");
+                                        if (q_2_4 > 0 ) {
+                                            if ( q_2_4 > prod_2_4 && confirm("Sunt disponibile doar " + prod_2_4 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_4 = prod_2_4;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_4 + " " + ( q_2_4 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_4 + " - " + price_2_4 * q_2_4 + " lei." ) ) {
+                                                sum_2_4 = price_2_4 * q_2_4;
+                                                prod_2_4 = prod_2_4 - q_2_4;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "5":
+                                    if (prod_2_5 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_5 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_5 = prompt("Cate portii de " + submenu_2_category + " " + item_2_5 + " doresti?" + " (" + prod_2_5 + " disponibile)");
+                                        if (q_2_5 > 0 ) {
+                                            if ( q_2_5 > prod_2_5 && confirm("Sunt disponibile doar " + prod_2_5 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_5 = prod_2_5;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_5 + " " + ( q_2_5 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_5 + " - " + price_2_5 * q_2_5 + " lei." ) ) {
+                                                sum_2_5 = price_2_5 * q_2_5;
+                                                prod_2_5 = prod_2_5 - q_2_5;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "6":
+                                    if (prod_2_6 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_6 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_6 = prompt("Cate portii de " + submenu_2_category + " " + item_2_6 + " doresti?" + " (" + prod_2_6 + " disponibile)");
+                                        if (q_2_6 > 0 ) {
+                                            if ( q_2_6 > prod_2_6 && confirm("Sunt disponibile doar " + prod_2_6 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_6 = prod_2_6;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_6 + " " + ( q_2_6 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_6 + " - " + price_2_6 * q_2_6 + " lei." ) ) {
+                                                sum_2_6 = price_2_6 * q_2_6;
+                                                prod_2_6 = prod_2_6 - q_2_6;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "7":
+                                    if (prod_2_7 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_7 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_7 = prompt("Cate portii de " + submenu_2_category + " " + item_2_7 + " doresti?" + " (" + prod_2_7 + " disponibile)");
+                                        if (q_2_7 > 0 ) {
+                                            if ( q_2_7 > prod_2_7 && confirm("Sunt disponibile doar " + prod_2_7 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_7 = prod_2_7;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_7 + " " + ( q_2_7 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_7 + " - " + price_2_7 * q_2_7 + " lei." ) ) {
+                                                sum_2_7 = price_2_7 * q_2_7;
+                                                prod_2_7 = prod_2_7 - q_2_7;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "8":
+                                    if (prod_2_8 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_8 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_8 = prompt("Cate portii de " + submenu_2_category + " " + item_2_8 + " doresti?" + " (" + prod_2_8 + " disponibile)");
+                                        if (q_2_8 > 0 ) {
+                                            if ( q_2_8 > prod_2_8 && confirm("Sunt disponibile doar " + prod_2_8 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_8 = prod_2_8;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_8 + " " + ( q_2_8 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_8 + " - " + price_2_8 * q_2_8 + " lei." ) ) {
+                                                sum_2_8 = price_2_8 * q_2_8;
+                                                prod_2_8 = prod_2_8 - q_2_8;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case "2":
+                        for (;sub_menu != GOTO_BACK;) {
+
+                            submenu_2_items = ( "1. " + item_2_1 + " - " + price_2_1 + " lei " + "(" + prod_2_1 + " disponibil)" + " \n" + 
+                            "2. " + item_2_2 + " - " + price_2_2 + " lei " + "(" + prod_2_2 + " disponibil)" + " \n" +
+                            "3. " + item_2_3 + " - " + price_2_3 + " lei " + "(" + prod_2_3 + " disponibil)" + " \n" +
+                            "4. " + item_2_4 + " - " + price_2_4 + " lei " + "(" + prod_2_4 + " disponibil)" + " \n" +
+                            "5. " + item_2_5 + " - " + price_2_5 + " lei " + "(" + prod_2_5 + " disponibil)" + " \n" +
+                            "6. " + item_2_6 + " - " + price_2_6 + " lei " + "(" + prod_2_6 + " disponibil)" + " \n" +
+                            "7. " + item_2_7 + " - " + price_2_7 + " lei " + "(" + prod_2_7 + " disponibil)" + " \n" +
+                            "8. " + item_2_8 + " - " + price_2_8 + " lei " + "(" + prod_2_8 + " disponibil)" + " \n" );
+
+                            sub_menu = prompt("Meniul " + submenu_2_category + "\n" + submenu_2_items + "\n########## NAVIGARE ########## \n" + GOTO_BACK + " - Inapoi");
+                            if (sub_menu == GOTO_EXIT) break;
+                            switch (sub_menu) {
+                                case "1":
+                                    if (prod_2_1 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_1 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_1 = prompt("Cate portii de " + submenu_2_category + " " + item_2_1 + " doresti?" + " (" + prod_2_1 + " disponibile)");
+                                        if (q_2_1 > 0 ) {
+                                            if ( q_2_1 > prod_2_1 && confirm("Sunt disponibile doar " + prod_2_1 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_1 = prod_2_1;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_1 + " " + ( q_2_1 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_1 + " - " + price_2_1 * q_2_1 + " lei." ) ) {
+                                                sum_2_1 = price_2_1 * q_2_1;
+                                                prod_2_1 = prod_2_1 - q_2_1;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "2":
+                                    if (prod_2_2 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_2 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_2 = prompt("Cate portii de " + submenu_2_category + " " + item_2_2 + " doresti?" + " (" + prod_2_2 + " disponibile)");
+                                        if (q_2_2 > 0 ) {
+                                            if ( q_2_2 > prod_2_2 && confirm("Sunt disponibile doar " + prod_2_2 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_2 = prod_2_2;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_2 + " " + ( q_2_2 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_2 + " - " + price_2_2 * q_2_2 + " lei." ) ) {
+                                                sum_2_2 = price_2_2 * q_2_2;
+                                                prod_2_2 = prod_2_2 - q_2_2;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "3":
+                                    if (prod_2_3 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_3 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_3 = prompt("Cate portii de " + submenu_2_category + " " + item_2_3 + " doresti?" + " (" + prod_2_3 + " disponibile)");
+                                        if (q_2_3 > 0 ) {
+                                            if ( q_2_3 > prod_2_3 && confirm("Sunt disponibile doar " + prod_2_3 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_3 = prod_2_3;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_3 + " " + ( q_2_3 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_3 + " - " + price_2_3 * q_2_3 + " lei." ) ) {
+                                                sum_2_3 = price_2_3 * q_2_3;
+                                                prod_2_3 = prod_2_3 - q_2_3;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "4":
+                                    if (prod_2_4 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_4 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_4 = prompt("Cate portii de " + submenu_2_category + " " + item_2_4 + " doresti?" + " (" + prod_2_4 + " disponibile)");
+                                        if (q_2_4 > 0 ) {
+                                            if ( q_2_4 > prod_2_4 && confirm("Sunt disponibile doar " + prod_2_4 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_4 = prod_2_4;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_4 + " " + ( q_2_4 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_4 + " - " + price_2_4 * q_2_4 + " lei." ) ) {
+                                                sum_2_4 = price_2_4 * q_2_4;
+                                                prod_2_4 = prod_2_4 - q_2_4;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "5":
+                                    if (prod_2_5 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_5 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_5 = prompt("Cate portii de " + submenu_2_category + " " + item_2_5 + " doresti?" + " (" + prod_2_5 + " disponibile)");
+                                        if (q_2_5 > 0 ) {
+                                            if ( q_2_5 > prod_2_5 && confirm("Sunt disponibile doar " + prod_2_5 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_5 = prod_2_5;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_5 + " " + ( q_2_5 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_5 + " - " + price_2_5 * q_2_5 + " lei." ) ) {
+                                                sum_2_5 = price_2_5 * q_2_5;
+                                                prod_2_5 = prod_2_5 - q_2_5;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "6":
+                                    if (prod_2_6 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_6 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_6 = prompt("Cate portii de " + submenu_2_category + " " + item_2_6 + " doresti?" + " (" + prod_2_6 + " disponibile)");
+                                        if (q_2_6 > 0 ) {
+                                            if ( q_2_6 > prod_2_6 && confirm("Sunt disponibile doar " + prod_2_6 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_6 = prod_2_6;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_6 + " " + ( q_2_6 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_6 + " - " + price_2_6 * q_2_6 + " lei." ) ) {
+                                                sum_2_6 = price_2_6 * q_2_6;
+                                                prod_2_6 = prod_2_6 - q_2_6;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "7":
+                                    if (prod_2_7 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_7 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_7 = prompt("Cate portii de " + submenu_2_category + " " + item_2_7 + " doresti?" + " (" + prod_2_7 + " disponibile)");
+                                        if (q_2_7 > 0 ) {
+                                            if ( q_2_7 > prod_2_7 && confirm("Sunt disponibile doar " + prod_2_7 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_7 = prod_2_7;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_7 + " " + ( q_2_7 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_7 + " - " + price_2_7 * q_2_7 + " lei." ) ) {
+                                                sum_2_7 = price_2_7 * q_2_7;
+                                                prod_2_7 = prod_2_7 - q_2_7;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "8":
+                                    if (prod_2_8 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_2_category + " " + item_2_8 + " nu mai este disponibil.")
+                                    } else {
+                                        q_2_8 = prompt("Cate portii de " + submenu_2_category + " " + item_2_8 + " doresti?" + " (" + prod_2_8 + " disponibile)");
+                                        if (q_2_8 > 0 ) {
+                                            if ( q_2_8 > prod_2_8 && confirm("Sunt disponibile doar " + prod_2_8 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_2_8 = prod_2_8;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_2_8 + " " + ( q_2_8 == 1 ? "portie" : "portii") + " de " + submenu_2_category + " " + item_2_8 + " - " + price_2_8 * q_2_8 + " lei." ) ) {
+                                                sum_2_8 = price_2_8 * q_2_8;
+                                                prod_2_8 = prod_2_8 - q_2_8;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case "3":
+                        for (;sub_menu != GOTO_BACK;) {
+
+                            submenu_3_items = ( "1. " + item_3_1 + " - " + price_3_1 + " lei " + "(" + prod_3_1 + " disponibil)" + " \n" + 
+                            "2. " + item_3_2 + " - " + price_3_2 + " lei " + "(" + prod_3_2 + " disponibil)" + " \n" +
+                            "3. " + item_3_3 + " - " + price_3_3 + " lei " + "(" + prod_3_3 + " disponibil)" + " \n" +
+                            "4. " + item_3_4 + " - " + price_3_4 + " lei " + "(" + prod_3_4 + " disponibil)" + " \n" +
+                            "5. " + item_3_5 + " - " + price_3_5 + " lei " + "(" + prod_3_5 + " disponibil)" + " \n" +
+                            "6. " + item_3_6 + " - " + price_3_6 + " lei " + "(" + prod_3_6 + " disponibil)" + " \n" +
+                            "7. " + item_3_7 + " - " + price_3_7 + " lei " + "(" + prod_3_7 + " disponibil)" + " \n" +
+                            "8. " + item_3_8 + " - " + price_3_8 + " lei " + "(" + prod_3_8 + " disponibil)" + " \n" );
+
+                            sub_menu = prompt("Meniul " + submenu_3_category + "\n" + submenu_3_items + "\n########## NAVIGARE ########## \n" + GOTO_BACK + " - Inapoi");
+                            if (sub_menu == GOTO_EXIT) break;
+                            switch (sub_menu) {
+                                case "1":
+                                    if (prod_3_1 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_3_category + " " + item_3_1 + " nu mai este disponibil.")
+                                    } else {
+                                        q_3_1 = prompt("Cate portii de " + submenu_3_category + " " + item_3_1 + " doresti?" + " (" + prod_3_1 + " disponibile)");
+                                        if (q_3_1 > 0 ) {
+                                            if ( q_3_1 > prod_3_1 && confirm("Sunt disponibile doar " + prod_3_1 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_3_1 = prod_3_1;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_3_1 + " " + ( q_3_1 == 1 ? "portie" : "portii") + " de " + submenu_3_category + " " + item_3_1 + " - " + price_3_1 * q_3_1 + " lei." ) ) {
+                                                sum_3_1 = price_3_1 * q_3_1;
+                                                prod_3_1 = prod_3_1 - q_3_1;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "2":
+                                    if (prod_3_2 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_3_category + " " + item_3_2 + " nu mai este disponibil.")
+                                    } else {
+                                        q_3_2 = prompt("Cate portii de " + submenu_3_category + " " + item_3_2 + " doresti?" + " (" + prod_3_2 + " disponibile)");
+                                        if (q_3_2 > 0 ) {
+                                            if ( q_3_2 > prod_3_2 && confirm("Sunt disponibile doar " + prod_3_2 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_3_2 = prod_3_2;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_3_2 + " " + ( q_3_2 == 1 ? "portie" : "portii") + " de " + submenu_3_category + " " + item_3_2 + " - " + price_3_2 * q_3_2 + " lei." ) ) {
+                                                sum_3_2 = price_3_2 * q_3_2;
+                                                prod_3_2 = prod_3_2 - q_3_2;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "3":
+                                    if (prod_3_3 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_3_category + " " + item_3_3 + " nu mai este disponibil.")
+                                    } else {
+                                        q_3_3 = prompt("Cate portii de " + submenu_3_category + " " + item_3_3 + " doresti?" + " (" + prod_3_3 + " disponibile)");
+                                        if (q_3_3 > 0 ) {
+                                            if ( q_3_3 > prod_3_3 && confirm("Sunt disponibile doar " + prod_3_3 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_3_3 = prod_3_3;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_3_3 + " " + ( q_3_3 == 1 ? "portie" : "portii") + " de " + submenu_3_category + " " + item_3_3 + " - " + price_3_3 * q_3_3 + " lei." ) ) {
+                                                sum_3_3 = price_3_3 * q_3_3;
+                                                prod_3_3 = prod_3_3 - q_3_3;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "4":
+                                    if (prod_3_4 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_3_category + " " + item_3_4 + " nu mai este disponibil.")
+                                    } else {
+                                        q_3_4 = prompt("Cate portii de " + submenu_3_category + " " + item_3_4 + " doresti?" + " (" + prod_3_4 + " disponibile)");
+                                        if (q_3_4 > 0 ) {
+                                            if ( q_3_4 > prod_3_4 && confirm("Sunt disponibile doar " + prod_3_4 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_3_4 = prod_3_4;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_3_4 + " " + ( q_3_4 == 1 ? "portie" : "portii") + " de " + submenu_3_category + " " + item_3_4 + " - " + price_3_4 * q_3_4 + " lei." ) ) {
+                                                sum_3_4 = price_3_4 * q_3_4;
+                                                prod_3_4 = prod_3_4 - q_3_4;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "5":
+                                    if (prod_3_5 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_3_category + " " + item_3_5 + " nu mai este disponibil.")
+                                    } else {
+                                        q_3_5 = prompt("Cate portii de " + submenu_3_category + " " + item_3_5 + " doresti?" + " (" + prod_3_5 + " disponibile)");
+                                        if (q_3_5 > 0 ) {
+                                            if ( q_3_5 > prod_3_5 && confirm("Sunt disponibile doar " + prod_3_5 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_3_5 = prod_3_5;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_3_5 + " " + ( q_3_5 == 1 ? "portie" : "portii") + " de " + submenu_3_category + " " + item_3_5 + " - " + price_3_5 * q_3_5 + " lei." ) ) {
+                                                sum_3_5 = price_3_5 * q_3_5;
+                                                prod_3_5 = prod_3_5 - q_3_5;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "6":
+                                    if (prod_3_6 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_3_category + " " + item_3_6 + " nu mai este disponibil.")
+                                    } else {
+                                        q_3_6 = prompt("Cate portii de " + submenu_3_category + " " + item_3_6 + " doresti?" + " (" + prod_3_6 + " disponibile)");
+                                        if (q_3_6 > 0 ) {
+                                            if ( q_3_6 > prod_3_6 && confirm("Sunt disponibile doar " + prod_3_6 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_3_6 = prod_3_6;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_3_6 + " " + ( q_3_6 == 1 ? "portie" : "portii") + " de " + submenu_3_category + " " + item_3_6 + " - " + price_3_6 * q_3_6 + " lei." ) ) {
+                                                sum_3_6 = price_3_6 * q_3_6;
+                                                prod_3_6 = prod_3_6 - q_3_6;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "7":
+                                    if (prod_3_7 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_3_category + " " + item_3_7 + " nu mai este disponibil.")
+                                    } else {
+                                        q_3_7 = prompt("Cate portii de " + submenu_3_category + " " + item_3_7 + " doresti?" + " (" + prod_3_7 + " disponibile)");
+                                        if (q_3_7 > 0 ) {
+                                            if ( q_3_7 > prod_3_7 && confirm("Sunt disponibile doar " + prod_3_7 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_3_7 = prod_3_7;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_3_7 + " " + ( q_3_7 == 1 ? "portie" : "portii") + " de " + submenu_3_category + " " + item_3_7 + " - " + price_3_7 * q_3_7 + " lei." ) ) {
+                                                sum_3_7 = price_3_7 * q_3_7;
+                                                prod_3_7 = prod_3_7 - q_3_7;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "8":
+                                    if (prod_3_8 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_3_category + " " + item_3_8 + " nu mai este disponibil.")
+                                    } else {
+                                        q_3_8 = prompt("Cate portii de " + submenu_3_category + " " + item_3_8 + " doresti?" + " (" + prod_3_8 + " disponibile)");
+                                        if (q_3_8 > 0 ) {
+                                            if ( q_3_8 > prod_3_8 && confirm("Sunt disponibile doar " + prod_3_8 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_3_8 = prod_3_8;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_3_8 + " " + ( q_3_8 == 1 ? "portie" : "portii") + " de " + submenu_3_category + " " + item_3_8 + " - " + price_3_8 * q_3_8 + " lei." ) ) {
+                                                sum_3_8 = price_3_8 * q_3_8;
+                                                prod_3_8 = prod_3_8 - q_3_8;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case "4":
+                        for (;sub_menu != GOTO_BACK;) {
+
+                            submenu_4_items = ( "1. " + item_4_1 + " - " + price_4_1 + " lei " + "(" + prod_4_1 + " disponibil)" + " \n" + 
+                            "2. " + item_4_2 + " - " + price_4_2 + " lei " + "(" + prod_4_2 + " disponibil)" + " \n" +
+                            "3. " + item_4_3 + " - " + price_4_3 + " lei " + "(" + prod_4_3 + " disponibil)" + " \n" +
+                            "4. " + item_4_4 + " - " + price_4_4 + " lei " + "(" + prod_4_4 + " disponibil)" + " \n" +
+                            "5. " + item_4_5 + " - " + price_4_5 + " lei " + "(" + prod_4_5 + " disponibil)" + " \n" +
+                            "6. " + item_4_6 + " - " + price_4_6 + " lei " + "(" + prod_4_6 + " disponibil)" + " \n" +
+                            "7. " + item_4_7 + " - " + price_4_7 + " lei " + "(" + prod_4_7 + " disponibil)" + " \n" +
+                            "8. " + item_4_8 + " - " + price_4_8 + " lei " + "(" + prod_4_8 + " disponibil)" + " \n" );
+
+                            sub_menu = prompt("Meniul " + submenu_4_category + "\n" + submenu_4_items + "\n########## NAVIGARE ########## \n" + GOTO_BACK + " - Inapoi");
+                            if (sub_menu == GOTO_EXIT) break;
+                            switch (sub_menu) {
+                                case "1":
+                                    if (prod_4_1 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_4_category + " " + item_4_1 + " nu mai este disponibil.")
+                                    } else {
+                                        q_4_1 = prompt("Cate portii de " + submenu_4_category + " " + item_4_1 + " doresti?" + " (" + prod_4_1 + " disponibile)");
+                                        if (q_4_1 > 0 ) {
+                                            if ( q_4_1 > prod_4_1 && confirm("Sunt disponibile doar " + prod_4_1 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_4_1 = prod_4_1;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_4_1 + " " + ( q_4_1 == 1 ? "portie" : "portii") + " de " + submenu_4_category + " " + item_4_1 + " - " + price_4_1 * q_4_1 + " lei." ) ) {
+                                                sum_4_1 = price_4_1 * q_4_1;
+                                                prod_4_1 = prod_4_1 - q_4_1;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "2":
+                                    if (prod_4_2 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_4_category + " " + item_4_2 + " nu mai este disponibil.")
+                                    } else {
+                                        q_4_2 = prompt("Cate portii de " + submenu_4_category + " " + item_4_2 + " doresti?" + " (" + prod_4_2 + " disponibile)");
+                                        if (q_4_2 > 0 ) {
+                                            if ( q_4_2 > prod_4_2 && confirm("Sunt disponibile doar " + prod_4_2 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_4_2 = prod_4_2;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_4_2 + " " + ( q_4_2 == 1 ? "portie" : "portii") + " de " + submenu_4_category + " " + item_4_2 + " - " + price_4_2 * q_4_2 + " lei." ) ) {
+                                                sum_4_2 = price_4_2 * q_4_2;
+                                                prod_4_2 = prod_4_2 - q_4_2;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "3":
+                                    if (prod_4_3 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_4_category + " " + item_4_3 + " nu mai este disponibil.")
+                                    } else {
+                                        q_4_3 = prompt("Cate portii de " + submenu_4_category + " " + item_4_3 + " doresti?" + " (" + prod_4_3 + " disponibile)");
+                                        if (q_4_3 > 0 ) {
+                                            if ( q_4_3 > prod_4_3 && confirm("Sunt disponibile doar " + prod_4_3 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_4_3 = prod_4_3;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_4_3 + " " + ( q_4_3 == 1 ? "portie" : "portii") + " de " + submenu_4_category + " " + item_4_3 + " - " + price_4_3 * q_4_3 + " lei." ) ) {
+                                                sum_4_3 = price_4_3 * q_4_3;
+                                                prod_4_3 = prod_4_3 - q_4_3;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "4":
+                                    if (prod_4_4 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_4_category + " " + item_4_4 + " nu mai este disponibil.")
+                                    } else {
+                                        q_4_4 = prompt("Cate portii de " + submenu_4_category + " " + item_4_4 + " doresti?" + " (" + prod_4_4 + " disponibile)");
+                                        if (q_4_4 > 0 ) {
+                                            if ( q_4_4 > prod_4_4 && confirm("Sunt disponibile doar " + prod_4_4 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_4_4 = prod_4_4;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_4_4 + " " + ( q_4_4 == 1 ? "portie" : "portii") + " de " + submenu_4_category + " " + item_4_4 + " - " + price_4_4 * q_4_4 + " lei." ) ) {
+                                                sum_4_4 = price_4_4 * q_4_4;
+                                                prod_4_4 = prod_4_4 - q_4_4;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "5":
+                                    if (prod_4_5 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_4_category + " " + item_4_5 + " nu mai este disponibil.")
+                                    } else {
+                                        q_4_5 = prompt("Cate portii de " + submenu_4_category + " " + item_4_5 + " doresti?" + " (" + prod_4_5 + " disponibile)");
+                                        if (q_4_5 > 0 ) {
+                                            if ( q_4_5 > prod_4_5 && confirm("Sunt disponibile doar " + prod_4_5 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_4_5 = prod_4_5;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_4_5 + " " + ( q_4_5 == 1 ? "portie" : "portii") + " de " + submenu_4_category + " " + item_4_5 + " - " + price_4_5 * q_4_5 + " lei." ) ) {
+                                                sum_4_5 = price_4_5 * q_4_5;
+                                                prod_4_5 = prod_4_5 - q_4_5;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "6":
+                                    if (prod_4_6 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_4_category + " " + item_4_6 + " nu mai este disponibil.")
+                                    } else {
+                                        q_4_6 = prompt("Cate portii de " + submenu_4_category + " " + item_4_6 + " doresti?" + " (" + prod_4_6 + " disponibile)");
+                                        if (q_4_6 > 0 ) {
+                                            if ( q_4_6 > prod_4_6 && confirm("Sunt disponibile doar " + prod_4_6 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_4_6 = prod_4_6;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_4_6 + " " + ( q_4_6 == 1 ? "portie" : "portii") + " de " + submenu_4_category + " " + item_4_6 + " - " + price_4_6 * q_4_6 + " lei." ) ) {
+                                                sum_4_6 = price_4_6 * q_4_6;
+                                                prod_4_6 = prod_4_6 - q_4_6;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "7":
+                                    if (prod_4_7 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_4_category + " " + item_4_7 + " nu mai este disponibil.")
+                                    } else {
+                                        q_4_7 = prompt("Cate portii de " + submenu_4_category + " " + item_4_7 + " doresti?" + " (" + prod_4_7 + " disponibile)");
+                                        if (q_4_7 > 0 ) {
+                                            if ( q_4_7 > prod_4_7 && confirm("Sunt disponibile doar " + prod_4_7 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_4_7 = prod_4_7;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_4_7 + " " + ( q_4_7 == 1 ? "portie" : "portii") + " de " + submenu_4_category + " " + item_4_7 + " - " + price_4_7 * q_4_7 + " lei." ) ) {
+                                                sum_4_7 = price_4_7 * q_4_7;
+                                                prod_4_7 = prod_4_7 - q_4_7;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "8":
+                                    if (prod_4_8 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_4_category + " " + item_4_8 + " nu mai este disponibil.")
+                                    } else {
+                                        q_4_8 = prompt("Cate portii de " + submenu_4_category + " " + item_4_8 + " doresti?" + " (" + prod_4_8 + " disponibile)");
+                                        if (q_4_8 > 0 ) {
+                                            if ( q_4_8 > prod_4_8 && confirm("Sunt disponibile doar " + prod_4_8 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_4_8 = prod_4_8;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_4_8 + " " + ( q_4_8 == 1 ? "portie" : "portii") + " de " + submenu_4_category + " " + item_4_8 + " - " + price_4_8 * q_4_8 + " lei." ) ) {
+                                                sum_4_8 = price_4_8 * q_4_8;
+                                                prod_4_8 = prod_4_8 - q_4_8;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    case "5":
+                        for (;sub_menu != GOTO_BACK;) {
+
+                            submenu_5_items = ( "1. " + item_5_1 + " - " + price_5_1 + " lei " + "(" + prod_5_1 + " disponibil)" + " \n" + 
+                            "2. " + item_5_2 + " - " + price_5_2 + " lei " + "(" + prod_5_2 + " disponibil)" + " \n" +
+                            "3. " + item_5_3 + " - " + price_5_3 + " lei " + "(" + prod_5_3 + " disponibil)" + " \n" +
+                            "4. " + item_5_4 + " - " + price_5_4 + " lei " + "(" + prod_5_4 + " disponibil)" + " \n" +
+                            "5. " + item_5_5 + " - " + price_5_5 + " lei " + "(" + prod_5_5 + " disponibil)" + " \n" +
+                            "6. " + item_5_6 + " - " + price_5_6 + " lei " + "(" + prod_5_6 + " disponibil)" + " \n" +
+                            "7. " + item_5_7 + " - " + price_5_7 + " lei " + "(" + prod_5_7 + " disponibil)" + " \n" +
+                            "8. " + item_5_8 + " - " + price_5_8 + " lei " + "(" + prod_5_8 + " disponibil)" + " \n" );
+
+                            sub_menu = prompt("Meniul " + submenu_5_category + "\n" + submenu_5_items + "\n########## NAVIGARE ########## \n" + GOTO_BACK + " - Inapoi");
+                            if (sub_menu == GOTO_EXIT) break;
+                            switch (sub_menu) {
+                                case "1":
+                                    if (prod_5_1 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_5_category + " " + item_5_1 + " nu mai este disponibil.")
+                                    } else {
+                                        q_5_1 = prompt("Cate portii de " + submenu_5_category + " " + item_5_1 + " doresti?" + " (" + prod_5_1 + " disponibile)");
+                                        if (q_5_1 > 0 ) {
+                                            if ( q_5_1 > prod_5_1 && confirm("Sunt disponibile doar " + prod_5_1 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_5_1 = prod_5_1;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_5_1 + " " + ( q_5_1 == 1 ? "portie" : "portii") + " de " + submenu_5_category + " " + item_5_1 + " - " + price_5_1 * q_5_1 + " lei." ) ) {
+                                                sum_5_1 = price_5_1 * q_5_1;
+                                                prod_5_1 = prod_5_1 - q_5_1;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "2":
+                                    if (prod_5_2 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_5_category + " " + item_5_2 + " nu mai este disponibil.")
+                                    } else {
+                                        q_5_2 = prompt("Cate portii de " + submenu_5_category + " " + item_5_2 + " doresti?" + " (" + prod_5_2 + " disponibile)");
+                                        if (q_5_2 > 0 ) {
+                                            if ( q_5_2 > prod_5_2 && confirm("Sunt disponibile doar " + prod_5_2 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_5_2 = prod_5_2;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_5_2 + " " + ( q_5_2 == 1 ? "portie" : "portii") + " de " + submenu_5_category + " " + item_5_2 + " - " + price_5_2 * q_5_2 + " lei." ) ) {
+                                                sum_5_2 = price_5_2 * q_5_2;
+                                                prod_5_2 = prod_5_2 - q_5_2;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "3":
+                                    if (prod_5_3 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_5_category + " " + item_5_3 + " nu mai este disponibil.")
+                                    } else {
+                                        q_5_3 = prompt("Cate portii de " + submenu_5_category + " " + item_5_3 + " doresti?" + " (" + prod_5_3 + " disponibile)");
+                                        if (q_5_3 > 0 ) {
+                                            if ( q_5_3 > prod_5_3 && confirm("Sunt disponibile doar " + prod_5_3 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_5_3 = prod_5_3;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_5_3 + " " + ( q_5_3 == 1 ? "portie" : "portii") + " de " + submenu_5_category + " " + item_5_3 + " - " + price_5_3 * q_5_3 + " lei." ) ) {
+                                                sum_5_3 = price_5_3 * q_5_3;
+                                                prod_5_3 = prod_5_3 - q_5_3;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "4":
+                                    if (prod_5_4 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_5_category + " " + item_5_4 + " nu mai este disponibil.")
+                                    } else {
+                                        q_5_4 = prompt("Cate portii de " + submenu_5_category + " " + item_5_4 + " doresti?" + " (" + prod_5_4 + " disponibile)");
+                                        if (q_5_4 > 0 ) {
+                                            if ( q_5_4 > prod_5_4 && confirm("Sunt disponibile doar " + prod_5_4 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_5_4 = prod_5_4;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_5_4 + " " + ( q_5_4 == 1 ? "portie" : "portii") + " de " + submenu_5_category + " " + item_5_4 + " - " + price_5_4 * q_5_4 + " lei." ) ) {
+                                                sum_5_4 = price_5_4 * q_5_4;
+                                                prod_5_4 = prod_5_4 - q_5_4;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "5":
+                                    if (prod_5_5 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_5_category + " " + item_5_5 + " nu mai este disponibil.")
+                                    } else {
+                                        q_5_5 = prompt("Cate portii de " + submenu_5_category + " " + item_5_5 + " doresti?" + " (" + prod_5_5 + " disponibile)");
+                                        if (q_5_5 > 0 ) {
+                                            if ( q_5_5 > prod_5_5 && confirm("Sunt disponibile doar " + prod_5_5 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_5_5 = prod_5_5;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_5_5 + " " + ( q_5_5 == 1 ? "portie" : "portii") + " de " + submenu_5_category + " " + item_5_5 + " - " + price_5_5 * q_5_5 + " lei." ) ) {
+                                                sum_5_5 = price_5_5 * q_5_5;
+                                                prod_5_5 = prod_5_5 - q_5_5;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "6":
+                                    if (prod_5_6 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_5_category + " " + item_5_6 + " nu mai este disponibil.")
+                                    } else {
+                                        q_5_6 = prompt("Cate portii de " + submenu_5_category + " " + item_5_6 + " doresti?" + " (" + prod_5_6 + " disponibile)");
+                                        if (q_5_6 > 0 ) {
+                                            if ( q_5_6 > prod_5_6 && confirm("Sunt disponibile doar " + prod_5_6 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_5_6 = prod_5_6;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_5_6 + " " + ( q_5_6 == 1 ? "portie" : "portii") + " de " + submenu_5_category + " " + item_5_6 + " - " + price_5_6 * q_5_6 + " lei." ) ) {
+                                                sum_5_6 = price_5_6 * q_5_6;
+                                                prod_5_6 = prod_5_6 - q_5_6;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "7":
+                                    if (prod_5_7 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_5_category + " " + item_5_7 + " nu mai este disponibil.")
+                                    } else {
+                                        q_5_7 = prompt("Cate portii de " + submenu_5_category + " " + item_5_7 + " doresti?" + " (" + prod_5_7 + " disponibile)");
+                                        if (q_5_7 > 0 ) {
+                                            if ( q_5_7 > prod_5_7 && confirm("Sunt disponibile doar " + prod_5_7 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_5_7 = prod_5_7;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_5_7 + " " + ( q_5_7 == 1 ? "portie" : "portii") + " de " + submenu_5_category + " " + item_5_7 + " - " + price_5_7 * q_5_7 + " lei." ) ) {
+                                                sum_5_7 = price_5_7 * q_5_7;
+                                                prod_5_7 = prod_5_7 - q_5_7;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                case "8":
+                                    if (prod_5_8 == 0) {
+                                        alert("Cu parere de rau dar " + submenu_5_category + " " + item_5_8 + " nu mai este disponibil.")
+                                    } else {
+                                        q_5_8 = prompt("Cate portii de " + submenu_5_category + " " + item_5_8 + " doresti?" + " (" + prod_5_8 + " disponibile)");
+                                        if (q_5_8 > 0 ) {
+                                            if ( q_5_8 > prod_5_8 && confirm("Sunt disponibile doar " + prod_5_8 + " portii. Doresti sa le algegi sau amina si alege alte produse") ) {
+                                                q_5_8 = prod_5_8;
+                                            }
+                                            if ( confirm( "Confirma adaugarea in cosul de cumparaturi: \n" + q_5_8 + " " + ( q_5_8 == 1 ? "portie" : "portii") + " de " + submenu_5_category + " " + item_5_8 + " - " + price_5_8 * q_5_8 + " lei." ) ) {
+                                                sum_5_8 = price_5_8 * q_5_8;
+                                                prod_5_8 = prod_5_8 - q_5_8;
+                                            }
+                                        } else {
+                                            alert("Ai introdus o valoare inadmisibila, mai incearca odata.");
+                                        }
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                        }
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            sum_category_1 = sum_1_1 + sum_1_2 + sum_1_3 + sum_1_4 + sum_1_5 + sum_1_6 + sum_1_7 + sum_1_8;
+            sum_category_2 = sum_2_1 + sum_2_2 + sum_2_3 + sum_2_4 + sum_2_5 + sum_2_6 + sum_2_7 + sum_2_8;
+            sum_category_3 = sum_3_1 + sum_3_2 + sum_3_3 + sum_3_4 + sum_3_5 + sum_3_6 + sum_3_7 + sum_3_8;
+            sum_category_4 = sum_4_1 + sum_4_2 + sum_4_3 + sum_4_4 + sum_4_5 + sum_4_6 + sum_4_7 + sum_4_8;
+            sum_category_5 = sum_5_1 + sum_5_2 + sum_5_3 + sum_5_4 + sum_5_5 + sum_5_6 + sum_5_7 + sum_5_8;
+
+            sum_prods = sum_category_1 + sum_category_2 + sum_category_3 + sum_category_4 + sum_category_5;
+
+            if (sum_prods >= triger_free_delivery) {
+                delivery_price = 0;
+            }
+
+            sum_order = sum_prods + delivery_price;
+
+            delivery_time = delivery_time_default + time_up;
+
+            if (sum_order != 0) {
+                document.write("<h2 align=" + "center" + ">Pretul comenzii: " + sum_order + " lei</h2>" +
+                    ( (TOGGLE_PROMO && sum_prods >= triger_promo) ? "<p align=" + "center" + "><b>Cadou: </b>" + promo_item_description + "</p>" : "" ) +
+                    "<hr>" +
+                    "<p align=" + "center" + "><b>Livrarea pentru " + delivery_region + "</b></p>" +
+                    ( (delivery_price != 0) ? "<p align=" + "center" + "><b>Pretul livarii: " + delivery_price + " lei.</b><br><i>(pretul este inclus in suma comenzii)</i></p>" : "<p align=" + "center" + "><b>Livrarea este gratuita.</b></p>" ) + 
+                    "<p align=" + "center" + "><b>" + delivery_time + " minute</b> pentru livrare.</p>" +
+                    "<hr>" +
+                    "<h3 align=" + "center" + "><b>Pofta buna.</b></h3>");
+            }
+
+            if (sum_order == 0) {
+                alert("Cu parere de rau dar nu putem continua, pentru ca nu ai indicat regiunea livrarii! \nCe pacat, caci avem un meniu foarte delicos. \n\nPoate mai incerci o data!"); 
+            }
+
+        } else {
+            alert("Cu parere de rau dar nu putem continua, pentru ca nu ai indicat regiunea livrarii! \nCe pacat, caci avem un meniu foarte delicos. \n\nPoate mai incerci o data!"); 
+        }
+    </script>
+</body>
+
+</html>

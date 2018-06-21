@@ -1,0 +1,63 @@
+
+<script>
+
+    const MENU =   " FOOD & DRINK \n" + 
+                   "1. PIzza  - 65lei\n" +
+                   "2. Salad  - 75lei\n" +
+                   "3. Zeama  - 45lei\n" +
+                   "4. Cola   - 30lei\n" +
+                   "5. Wine   - 300lei\n\n" ;
+    var pizza = 65;
+    var salad = 75;
+    var zeama = 45;
+    var Cola  = 30;
+    var wine = 300;
+    var order = +prompt(MENU + "What would you like to order?");
+    
+    switch(order){
+        case 1:
+        if(order==1){
+      var  order1 = prompt("How many servings of Pizza you want?");
+      if(order1 <= 3){
+        alert("You have chose" +" "+ order1 + " " +"Pizza -"+ " " + order1 * pizza +"Lei !\n\n" +"Is availabel"+ " "+ (3-order1)+" "+"servings!" );
+      }else{
+            alert("Pizza is not availabel");
+        }
+        }break;
+        case 2:alert();break;
+        case 3:alert();break;
+        case 4:alert();break;
+        case 5:alert();break;
+        
+        default: alert("Thenk you, come again!!!"); break;
+    }
+    
+    
+   /* if( order == 2){
+        alert("You have chose\n\n" + " " + salad);
+    
+    } else{
+    if(  order == 1){
+        alert("Is not availabel!\n\n" + pizza );
+    }else{
+        if(  order == 3){
+        alert("Is availabel!\n\n" + zeama );
+    }else{   
+      if(  order == 5 ){
+        var quant = prompt("How many bottles of wine ?");
+       alert("Your order cost ("+ quant * wine +"Lei)");
+     if(quant >= 300){
+       alert("Over 300 Lei free shipping!");
+     }  
+    }else{
+            alert("Thenk you, come again!!!");
+        
+    
+       } 
+      }
+     }
+    }
+    */
+    
+    </script>
+    

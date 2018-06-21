@@ -1,0 +1,42 @@
+<script>
+    ///создаем базу данных при помоши обьекта///
+    /// конструкторы ///
+    function ref(name,model){
+    this.name=name
+    this.model=model
+    }
+    
+    function car(regnum , owner ,ref){
+    this.regnum= regnum
+    this.owner= owner
+    this.ref= ref
+    }
+    
+    /// сама база данных ///
+    aref = new Array();
+    aref[0] = new ref('жигули 0','ваз 0')
+    aref[1] = new ref('жигули 1','ваз 1')
+    aref[2] = new ref('волга','ваз 2')
+    aref[3] = new ref('ока','ваз 3')
+    
+    acar = new Array();
+    acar[0] = new car('A1','Иванов',aref[1])
+    acar[1] = new car('A2','Петров',aref[1])
+    acar[2] = new car('A3','Алексей',aref[0])
+    acar[3] = new car('A4','Федор',aref[2])
+    acar[4] = new car('A5','Лекса',aref[3])
+    acar[5] = new car('A6','Карл',aref[2])
+    acar[6] = new car('A7','Сергей',aref[2])
+    
+    strTAB = "<table border=1> <tr>";
+    strTAB += "<th>name</th><th>number</th><th>owner</th> ";
+    
+    for(var i = 0;i<= acar.length-1;i++){
+    strTAB += "<tr><td>" + acar[i].ref.name + "</td><td>" + acar[i].regnum
+    strTAB += "</td><td>" + acar[i].owner + "</td></tr>"
+    }
+    
+    strTAB += "</table>";
+    document.write(strTAB);
+    
+    </script>
