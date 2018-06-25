@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    body{
+        background-image:url("https://d2v9y0dukr6mq2.cloudfront.net/video/thumbnail/SwG9uq2iisrvays7/videoblocks-camera-motion-along-the-floor-of-a-parking-garage-with-many-available-parking-spaces-pov_sq6vbnqlg_thumbnail-full01.png"); 
+        text-align: center;
+        
+    }
+    
+    </style>
+</head>
+<body>
+    
+    <script>
+       
+        // base class / superclass
+    class Car{
+        //brand,model,year,power,photo
+        constructor(photo, brand, model, year, power, acceleration, capacity, armor){
+            this.photo= photo;
+            this.brand= "Mercedes-Benz";
+            this.model= model;
+            this.year=  "2018";
+            this.power= power;
+            this.acceleration= "280km / h";
+            this.capacity= "10 t daca nu se va strica";
+            this.armor= "armor - 4.5cm";
+            
+        }
+        about(){
+            alert(` This is ${this.brand}  ${this.model}  ${this.year}  ${this.power} a car!!! `);
+    
+        }
+        render(){
+            document.write(`<br><br> <img src="${this.photo}"> <br><br><br><br>`);
+            document.write(` <h1>${this.brand}</h1> `);
+            document.write(` <h2>${this.model}  ${this.year}  ${this.power}</h2> `);
+        }
+    }
+      // extendet class / inheriting
+    class SportCar extends Car{
+      
+        about(){
+           alert(` This is ${this.brand}  ${this.model}  ${this.year}  ${this.power}  ${this.acceleration}  a Sport car!!! `);
+     }
+        render(){
+            document.write(`<br><br> <img src="${this.photo}"> <br><br><br><br>`);
+            document.write(` <h1> ${this.brand} </h1> `);
+            document.write(` <h2> ${this.model}  ${this.year} <br> ${this.power}  ${this.acceleration} </h2> `);
+        
+        }
+    }
+    class HavyCar extends Car{
+       
+       about(){
+           alert(` This is ${this.brand}  ${this.model}  ${this.year}  ${this.power}  ${this.capacity},  a Havy car!!! `);
+     }
+        render(){
+            document.write(`<br><br> <img src="${this.photo}"> <br><br><br><br>`);
+            document.write(` <h1> ${this.brand} </h1> `);
+            document.write(` <h2> ${this.model}  ${this.year} <br> ${this.power}  ${this.capacity} </h2> `);
+        
+        }
+    }
+    class MilitaryCar extends Car{
+       
+       about(){
+           alert(` This is ${this.brand}  ${this.model}  ${this.year}  ${this.power}  ${this.armor},  a Military car!!! `);
+     }
+        render(){
+            document.write(`<br><br> <img src="${this.photo}"> <br><br><br><br>`);
+            document.write(` <h1> ${this.brand} </h1> `);
+            document.write(` <h2> ${this.model}  ${this.year} <br> ${this.power}  ${this.armor} </h2> `);
+        
+        }
+    }
+
+    // creating objects
+    var c = new Car( "http://www.cagleonline.com/wp-content/uploads/2017/11/2018amercedes-benzas65-amg-new-2016-mercedes-benz-s65-amg-for-sale-159-900-of-2018amercedes-benzas65-amg.jpg","", "AMG S65","", "430hp");
+        c.about();
+        c.render();
+
+    var sc = new SportCar( "https://hips.hearstapps.com/amv-prod-cad-assets.s3.amazonaws.com/images/media/51/2018-mercedes-amg-gt-s-and-gt-c-inline2-photo-674510-s-original.jpg","", "AMG GT S63","", "520hp");
+        //sc.about();
+        //sc.render();
+
+    var hc = new HavyCar("https://wroom.ru/i/cars2/zil_130_1_2.jpg", "","Mega Car","", "200hp" );
+        //hc.about();
+        //hc.render();
+
+    var mc = new MilitaryCar("https://defense-update.com/wp-content/uploads/2012/03/mercedes_benz_LAPV7.jpg","", "LAPV7.X", "", "130hp","","")
+        //mc.about();
+        //mc.render();
+    //         ----> SportCar           -----> object1,object2
+    //  Car    ----> HavyCar            -----> object3,object4
+    //         ----> MilitaryCar        -----> object5,object6
+    
+    </script>
+    
+    
+    
+    
+     
+
+</body>
+</html>
