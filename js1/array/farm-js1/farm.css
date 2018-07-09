@@ -1,0 +1,20 @@
+#farm{
+    height: 50px;
+    border-bottom: 5px solid green; 
+}
+#farm .box{
+    border: 1px solid #61a361;
+    width: 48px;
+    height: 48px;
+    float: left;
+
+}
+#farm .corn{
+    background-image: url("images/corn-icon.png");
+}
+#farm .tomato{
+    background-image: url("images/tomato-icon.png");
+}
+#farm .potato{
+    background-image: url("images/32360-potato-icon.png");
+}

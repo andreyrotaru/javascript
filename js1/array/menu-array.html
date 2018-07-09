@@ -1,0 +1,39 @@
+<script>
+     var menu           = [
+    "\nPizza",
+    " Salad",
+    " Soup"
+  ];
+  var menu_prices = [
+    65.00,
+    45.00,
+    25.00
+  ];
+  
+  var option_name = prompt("Salut!!! Ce doriti sa serviti din acestea pozitii ?" + menu);
+       option_name = option_name.toLowerCase();
+       option_name = option_name.trim();
+
+  
+       if (option_name == "pizza") {
+         var quant = prompt(` Ati ales  ${menu[0]}, o portie costa ${menu_prices[0]} LEI .
+          Cate portii doriti ?`);
+         alert(` Ati ales ${quant} portii de ${menu[0]} .
+         Comanda costa `+ quant * menu_prices[0] + " LEI" );
+
+      } else if (option_name == "salad") {
+         var quant = prompt(` Ati ales  ${menu[1]}, o portie costa ${menu_prices[1]} LEI .
+         Cate portii doriti ?`);
+         alert(` Ati ales ${quant} portii de ${menu[1]} .
+         Comanda costa `+ quant * menu_prices[1] + " LEI" );
+
+      } else if (option_name == "soup") {
+         var quant = prompt(` Ati ales  ${menu[2]}, o portie costa ${menu_prices[2]} LEI .
+         Cate portii doriti ?`);
+         alert(` Ati ales ${quant} portii de ${menu[2]} .
+         Comanda costa `+ quant * menu_prices[2] + " LEI" );
+      } else {
+        alert("Multumesc ca ati intrat!!!")
+      }
+  
+</script>
