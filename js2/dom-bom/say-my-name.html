@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>DOM Example</title>
+</head>
+<body>
+   <input type="text" placeholder="your name pls...">
+   <button onclick="say();">SAY IT!</button>
+   <div id="message">
+
+   </div>
+   <script>
+        function say(){
+            var input = document.body.firstElementChild; // находим первый инпут и заходит
+            // document.querySelector('input');
+            var name = input.value; 
+
+            
+              
+            //alert(input.value);
+            if (name == "") {
+                var div = document.getElementById('message');
+                input.style="border: 2px solid red;";
+                div.innerHTML = ` Nu ati introdus numele!!!`;
+                
+            } else {
+                 var div = document.getElementById('message');
+                 div.innerHTML = `Hello, ${name} !!!`;
+             }
+        }
+
+        </script>
+</body>
+</html>

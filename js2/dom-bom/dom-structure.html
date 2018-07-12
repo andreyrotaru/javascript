@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    
+    <title>DOM Hierarchi Example</title>
+</head>
+<body>
+    <h1>DOM <i><small>Hierarchi Example</small></i></h1>
+    <h2>Some Tips</h2>
+    <ul>
+        <li>.parentElement</li>
+        <li>.previousElementSibling</li>
+        <li>.nextElementSibling</li>
+        <li>.children[]</li>
+        <li>.firstElementChild</li>
+        <li>.lastElementChild</li>
+    </ul>
+
+    <script>
+    // 1) read content of h2 .inner.HTML
+    //   document.body.children[1].innerHTML
+    //   document.body.firstElementChild.nextElementSibling.innerHTML
+    // 2)read content <i>
+    //    document.body.firstElementChild.firstElementChild.innerHTML
+    //    document.body.children[0].children[0].children[0].innerHTML
+    // 3)read content <li> - 5th
+    //    document.body.children[2].children[5].innerHTML 
+
+    // OLD    
+    // document.getElementById('may-id') -> Object/null
+    // document.getElementsByClassName('my-class') -> [object] / []
+    // document.getElementsByTagName('ul') -> [object] / []
+
+    // modern
+    // document.querySelector('css formula') -> Object/null
+    // document.querySelectorAll('css formula') -> [object] / []
+    </script>
+</body>
+</html>
