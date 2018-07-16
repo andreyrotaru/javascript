@@ -1,0 +1,53 @@
+#land{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top:0px;
+    left: 0px;
+    background-image: url(img/sand2.jpg);
+    
+}
+#road{
+    position: absolute;
+    width: 280px;
+    height: 100%;
+    background-image: url(img/road1.jpg);
+    left: 0;
+    right: 0;
+    margin: auto;
+   
+}
+#car{
+    width: 132px;
+    height: 250px;
+    position: absolute;
+    bottom: 0px;
+    background-image: url(img/car3.png);
+    background-size:cover; 
+    
+    /* filter - drop-shadow */
+}
+#car #far1{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 80px 100px 100px 20px ;
+    background:linear-gradient(to top right, #ffff0071 20%,#ffff6550 50%, #fdfd8313 80%);
+    filter: drop-shadow(5px 5px 15px yellow);
+    transform: rotate(-28deg) skewY(-45deg);
+    right: 10px;
+    bottom: 349px;
+    
+}
+#car #far2{
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    border-radius: 100px 80px 20px 100px ;
+    background:linear-gradient(to top left, #ffff0071 20%,#ffff6550 50%, #fdfd8313 80%);
+    transform: rotate(28deg) skewY(45deg);
+    filter: drop-shadow(5px 5px 15px yellow);
+    left: 8px;
+    bottom: 349px;
+    
+}
